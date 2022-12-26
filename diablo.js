@@ -24,7 +24,7 @@ chats: {},
 }
 
 global.ownerName = 'El Diablo'
-global.ownerNumber = ["6285157792618@s.whatsapp.net", "6281266652007@s.whatsapp.net", "6288989555217@s.whatsapp.net"]
+global.ownerNumber = ["@s.whatsapp.net", "@s.whatsapp.net", "@s.whatsapp.net"]
 global.prefa = ['','.']
 global.mess = {
     wait: 'Wait Sis Please be patient',
@@ -109,7 +109,7 @@ const listMessage = {
  text: `亗╭┬─────────────────┈ 
 亗├ 「 Hallo 」 「 ${pushname} 」
 亗├──────────────────┈`,
-                footer: 'Ari Maulana Firmansyah',
+                footer: 'w',
   title: `Setting Group ${groupName}`,
   buttonText: "Klik Disini!",
   sections
@@ -404,7 +404,7 @@ if (!isGroupAdmins) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan 
  }
  break
 case 'buyspammenu':
-diablo.sendImage(from, 'https://arpaysmm.com/qris.png', `SIlahkan Scan QR Ini, Jika Sudah Lapor Admin`)
+diablo.sendImage(from, 'https://.com/qris.png', `SIlahkan Scan QR Ini, Jika Sudah Lapor Admin`)
 break
 case 'restart':{
  if (!isGroup) return diablobotwhatsapp.reply(`wajib dalam grup`)
@@ -462,7 +462,7 @@ break
 case 'tag': {
  if (!khususOwner) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pemilik bot`)
    
-diablo.sendMessage(diablobotwhatsapp.chat, { text : 'HIDE TAG BY AMFCODE' ? q : 'HIDE TAG BY AMFCODE' , mentions: participants.map(a => a.id)}, { quoted: diablobotwhatsapp })
+diablo.sendMessage(diablobotwhatsapp.chat, { text : 'HIDE TAG BY ' ? q : 'HIDE TAG BY ' , mentions: participants.map(a => a.id)}, { quoted: diablobotwhatsapp })
 }
 break
 case 'test':
