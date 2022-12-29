@@ -24,7 +24,7 @@ chats: {},
 }
 
 global.ownerName = 'El Diablo'
-global.ownerNumber = ["6285157792618@s.whatsapp.net", "6281266652007@s.whatsapp.net", "6288989555217@s.whatsapp.net"]
+global.ownerNumber = ["0@s.whatsapp.net"]
 global.prefa = ['','.']
 global.mess = {
     wait: 'Wait Sis Please be patient',
