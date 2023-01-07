@@ -25,7 +25,7 @@ chats: {},
 }
 
 global.ownerName = 'El Diablo'
-global.ownerNumber = ["0@s.whatsapp.net"]
+global.ownerNumber = ["6285157792618@s.whatsapp.net"]
 global.prefa = ['','.']
 global.mess = {
     wait: 'Wait Sis Please be patient',
@@ -94,7 +94,7 @@ try {
     	const isBotAdmins = diablobotwhatsapp.isGroup ? groupAdmins.includes(botNumber) : false
         const isGroupAdmins = diablobotwhatsapp.isGroup ? groupAdmins.includes(diablobotwhatsapp.sender) : false
     	const isAdmins = diablobotwhatsapp.isGroup ? groupAdmins.includes(diablobotwhatsapp.sender) : false
-    	const nomerOwner = global.ownerNumber
+    	const nomerOwner = "6285157792618"
         const idgrup = groupMetadata.id
 
     	const sections = [
@@ -128,6 +128,13 @@ const buttonMessage = {
     buttons: buttons,
     headerType: 1
 }
+
+const vcard = 'BEGIN:VCARD\n' // metadata of the contact card
+            + 'VERSION:3.0\n' 
+            + 'FN:Ari Maulana Firmansyah\n' // full name
+            + 'ORG:PROGRAMER;\n' // the organization of the contact
+            + 'TEL;type=CELL;type=VOICE;waid=6285157792618:+62 8515 7792 618\n' // WhatsApp ID + phone number
+            + 'END:VCARD'
 
 
 try {
@@ -595,8 +602,18 @@ case 'verif': {
 
  break
 case 'premium':
-diablo.sendMessage(from, `DANA : ${nomerOwner}
-Silahkan Kirim Bukti Transfer Ke https://wa.me/${nomerOwner}`)
+diablo.sendButtonText(from, [{ buttonId: 'owner', buttonText: { displayText: 'Konfirmasi Subscription' }, type: 1 }], `Silahkan Transfer Rp. 35.000 Ke ${nomerOwner}\nJika Sudah Transfer\nSilahkan Klik Button Di Bawah Ini`,`Ari Maulana`)
+break
+case 'owner':
+ diablo.sendMessage(
+    from,
+    { 
+        contacts: { 
+            displayName: 'Ari Maulana Firmansyah', 
+            contacts: [{ vcard }] 
+        }
+    }
+)
 break
 case 'restart':{
  if (!isGroup) return diablobotwhatsapp.reply(`wajib dalam grup`)
