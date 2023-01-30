@@ -24,8 +24,8 @@ chats: {},
 ...(global.db || {})
 }
 
-global.ownerName = 'El Diablo'
-global.ownerNumber = ["6285157792618@s.whatsapp.net"]
+global.ownerName = 'El Roberto'
+global.ownerNumber = ["6285235822908@s.whatsapp.net"]
 global.prefa = ['','.']
 global.mess = {
     wait: 'Wait Sis Please be patient',
@@ -94,7 +94,8 @@ try {
     	const isBotAdmins = diablobotwhatsapp.isGroup ? groupAdmins.includes(botNumber) : false
         const isGroupAdmins = diablobotwhatsapp.isGroup ? groupAdmins.includes(diablobotwhatsapp.sender) : false
     	const isAdmins = diablobotwhatsapp.isGroup ? groupAdmins.includes(diablobotwhatsapp.sender) : false
-    	const nomerOwner = "6285157792618"
+    	const nomerOwner = "6285235822908"
+
         const idgrup = groupMetadata.id
 
     	const sections = [
@@ -131,9 +132,9 @@ const buttonMessage = {
 
 const vcard = 'BEGIN:VCARD\n' // metadata of the contact card
             + 'VERSION:3.0\n' 
-            + 'FN:Ari Maulana Firmansyah\n' // full name
+            + 'FN:EL ROBERTO\n' // full name
             + 'ORG:PROGRAMER;\n' // the organization of the contact
-            + 'TEL;type=CELL;type=VOICE;waid=6285157792618:+62 8515 7792 618\n' // WhatsApp ID + phone number
+            + 'TEL;type=CELL;type=VOICE;waid=6285235822908:+6285235822908\n' // WhatsApp ID + phone number
             + 'END:VCARD'
 
 
@@ -308,7 +309,7 @@ jiren = `
 
 SILAHKAN PILIH MENU DIBAWAH
 
-• bugmenu
+• virtexmenu
 • verifmenu
 • spammenu
 • aimenu
@@ -323,7 +324,7 @@ SILAHKAN PILIH MENU DIBAWAH
 `
 diablobotwhatsapp.reply(jiren)
 break
-case 'bugmenu':
+case 'virtexmenu':
 jiren = ` 
 ▬▭▬▭▬ ✦✧✦ ▬▭▬▭▬
 ▬▭▬▭▬ ✦✧✦ ▬▭▬▭▬
@@ -337,7 +338,7 @@ jiren = `
 【♡ۣۜۜ፝͜͜͡͡✿➣  brutal (62xxx)
 【♡ۣۜۜ፝͜͜͡͡✿➣  kill (62xxx)
 【♡ۣۜۜ፝͜͜͡͡✿➣  troli (62xxx)
- contoh : bug5 6281234126765
+ contoh : bug1000 6281234126765
 ▬▭▬▭▬▭▬▭▬▭▬▭▬
     
 `
@@ -398,7 +399,7 @@ jiren = `
 【♡ۣۜۜ፝͜͜͡͡✿➣  restart ( untuk restart bot )
 【♡ۣۜۜ፝͜͜͡͡✿➣  stats ( untuk melihat status bot )
 【♡ۣۜۜ፝͜͜͡͡✿➣  grup ( untuk setting grup )
-【♡ۣۜۜ፝͜͜͡͡✿➣  angat_derajat ( untuk angkat member menjadi admin grup )
+【♡ۣۜۜ፝͜͜͡͡✿➣  angatk_derajat ( untuk angkat member menjadi admin grup )
 【♡ۣۜۜ፝͜͜͡͡✿➣  turun_derajat ( untuk menurunkan admin menjadi member grup )
 ▬▭▬▭▬▭▬▭▬▭▬▭▬
     
@@ -473,10 +474,10 @@ diablo.groupSettingUpdate(idgrup, 'announcement')
 diablobotwhatsapp.reply(`「 Group Settings Change 」\n\nGroup telah ditutup oleh admin, Sekarang hanya admin yang dapat mengirim pesan !`)
 break
 case 'akses':
-diablobotwhatsapp.reply(`UNTUK AKSES BOT CHAT OWNER : wa.me/1`)
+diablobotwhatsapp.reply(`UNTUK AKSES BOT CHAT OWNER : wa.me/6285235822908`)
 break
 case 'sewa':
-diablobotwhatsapp.reply(`UNTUK SEWA BOT CHAT OWNER : wa.me/6`)
+diablobotwhatsapp.reply(`UNTUK SEWA BOT CHAT OWNER : wa.me/6285235822908`)
 break
 case 'ban':
    case 'bye':
@@ -602,14 +603,14 @@ case 'verif': {
 
  break
 case 'premium':
-diablo.sendButtonText(from, [{ buttonId: 'owner', buttonText: { displayText: 'Konfirmasi Subscription' }, type: 1 }], `Silahkan Transfer Rp. 35.000 Ke ${nomerOwner}\nJika Sudah Transfer\nSilahkan Klik Button Di Bawah Ini`,`Ari Maulana`)
+diablo.sendButtonText(from, [{ buttonId: 'owner', buttonText: { displayText: 'Konfirmasi Subscription' }, type: 1 }], `Untuk membeli akses seharga RP 35.000 Silahkan chat Ke ${nomerOwner}\nJika Sudah Transfer\nSilahkan Klik Button Di Bawah Ini`,`EL ROBERTO`)
 break
 case 'owner':
  diablo.sendMessage(
     from,
     { 
         contacts: { 
-            displayName: 'Ari Maulana Firmansyah', 
+            displayName: 'EL ROBERTO', 
             contacts: [{ vcard }] 
         }
     }
